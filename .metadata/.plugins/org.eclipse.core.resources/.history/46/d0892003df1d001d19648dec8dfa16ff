@@ -1,0 +1,21 @@
+package grandcircus.weatherProxy.Service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import grandcircus.weatherProxy.Model.ForecastResponse;
+import grandcircus.weatherProxy.Model.Period;
+
+@Service
+public class ForecastService {
+	private RestTemplate restTemplate = new RestTemplate();
+	
+	public List<Period> getPeriodForecasts(String lat, String lon) {
+		String url = "https://api.weather.gov/points/{lat},{lon}";
+		
+		ForecastResponse response = restTemplate.getForObject(url, ForecastResponse.class, lat, lon);
+		return response.getPeriods();
+	}
+}

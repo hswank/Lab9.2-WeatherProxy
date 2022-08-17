@@ -1,0 +1,5 @@
+package grandcircus.weatherProxy.Model;
+
+public class Properties {
+
+}
